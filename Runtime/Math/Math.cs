@@ -1,12 +1,12 @@
 ﻿namespace PluggableMath
 {
-    public static class Math<TNumber> where TNumber : INumber<TNumber>
+    public static class Math<TNumber> where TNumber : struct, INumber<TNumber>
     {
-        private static ISpecialMath<TNumber> s_spectialMath;
+        private static ISpecialMath<TNumber> SpecialMath { get; }
 
-        public static void SetSpecialMath(ISpecialMath<TNumber> specialMath)
+        static Math()
         {
-            s_spectialMath = specialMath;
+            SpecialMath = new TNumber().SpecialMath;
         }
 
         public static Operand<TNumber> Max(Operand<TNumber> a, Operand<TNumber> b)
@@ -32,9 +32,14 @@
         public static Operand<TNumber> Clamp(Operand<TNumber> value, Operand<TNumber> min, Operand<TNumber> max)
         {
             if (value < min)
+            {
                 return min;
+            }
+
             if (value > max)
+            {
                 return max;
+            }
 
             return value;
         }
@@ -59,57 +64,57 @@
 
         public static Operand<TNumber> Abs(Operand<TNumber> number)
         {
-            return s_spectialMath.Abs(number.Value);
+            return SpecialMath.Abs(number.Value);
         }
 
         public static Operand<TNumber> Sign(Operand<TNumber> number)
         {
-            return s_spectialMath.Sign(number.Value);
+            return SpecialMath.Sign(number.Value);
         }
 
         public static Operand<TNumber> SignWithZero(Operand<TNumber> number)
         {
-            return s_spectialMath.SignWithZero(number.Value);
+            return SpecialMath.SignWithZero(number.Value);
         }
 
         public static Operand<TNumber> CopySign(Operand<TNumber> from, Operand<TNumber> to)
         {
-            return s_spectialMath.CopySign(from.Value, to.Value);
+            return SpecialMath.CopySign(from.Value, to.Value);
         }
 
         public static Operand<TNumber> Sqrt(Operand<TNumber> number)
         {
-            return s_spectialMath.Sqrt(number.Value);
+            return SpecialMath.Sqrt(number.Value);
         }
 
         public static Operand<TNumber> Pow(Operand<TNumber> number, Operand<TNumber> power)
         {
-            return s_spectialMath.Pow(number.Value, power.Value);
+            return SpecialMath.Pow(number.Value, power.Value);
         }
 
         public static Operand<TNumber> Sin(Operand<TNumber> number)
         {
-            return s_spectialMath.Sin(number.Value);
+            return SpecialMath.Sin(number.Value);
         }
 
         public static Operand<TNumber> Cos(Operand<TNumber> number)
         {
-            return s_spectialMath.Cos(number.Value);
+            return SpecialMath.Cos(number.Value);
         }
 
         public static Operand<TNumber> Tan(Operand<TNumber> number)
         {
-            return s_spectialMath.Tan(number.Value);
+            return SpecialMath.Tan(number.Value);
         }
 
         public static Operand<TNumber> Atan(Operand<TNumber> number)
         {
-            return s_spectialMath.Atan(number.Value);
+            return SpecialMath.Atan(number.Value);
         }
 
         public static Operand<TNumber> Atan2(Operand<TNumber> y, Operand<TNumber> x)
         {
-            return s_spectialMath.Atan2(y.Value, x.Value);
+            return SpecialMath.Atan2(y.Value, x.Value);
         }
     }
 }

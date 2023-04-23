@@ -1,9 +1,11 @@
 ﻿namespace PluggableMath
 {
-    public interface INumberParser<TNumber> where TNumber : INumber<TNumber>
+    public interface IParser<TNumber> where TNumber : struct, INumber<TNumber>
     {
         TNumber FromInt(int value);
 
         TNumber FromDivision(int nominator, int denominator);
+
+        float ToFloat(TNumber number);
     }
 }

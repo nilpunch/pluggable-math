@@ -6,13 +6,6 @@ namespace PluggableMath
 {
     public readonly struct Float : INumber<Float>
     {
-        static Float()
-        {
-            Epsilon<Float>.SetValue(new Float(1e-6f));
-            Parse<Float>.SetParser(new FloatParser());
-            Math<Float>.SetSpecialMath(new FloatSpecialMath());
-        }
-
         public readonly float Value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -20,6 +13,10 @@ namespace PluggableMath
         {
             Value = value;
         }
+
+        public IEpsilon<Float> Epsilon => new GenericEpsilon<Float>(new Float(1e-6f));
+        public IParser<Float> Parser => new FloatParser();
+        public ISpecialMath<Float> SpecialMath => new FloatSpecialMath();
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Float Add(Float other)

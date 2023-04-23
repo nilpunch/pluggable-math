@@ -1,22 +1,30 @@
-﻿namespace PluggableMath
+﻿using System;
+using System.Runtime.CompilerServices;
+
+namespace PluggableMath
 {
-    public static class Parse<TNumber> where TNumber : INumber<TNumber>
+    public static class Parse<TNumber> where TNumber : struct, INumber<TNumber>
     {
-        private static INumberParser<TNumber> _numberParser;
+        private static IParser<TNumber> Parser { get; }
+
+        static Parse()
+        {
+            Parser = new TNumber().Parser;
+        }
         
         public static TNumber From(int value)
         {
-            return _numberParser.FromInt(value);
+            return Parser.FromInt(value);
         }
         
         public static TNumber FromDivision(int nominator, int denominator)
         {
-            return _numberParser.FromDivision(nominator, denominator);
+            return Parser.FromDivision(nominator, denominator);
         }
         
-        public static void SetParser(INumberParser<TNumber> numberParser)
+        public static float ToFloat(TNumber number)
         {
-            _numberParser = numberParser;
+            return Parser.ToFloat(number);
         }
     }
 }

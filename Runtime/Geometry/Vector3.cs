@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace PluggableMath
 {
-    public readonly struct Vector3<TNumber> where TNumber : INumber<TNumber>
+    public readonly struct Vector3<TNumber> where TNumber : struct, INumber<TNumber>
     {
         public readonly Operand<TNumber> X;
         public readonly Operand<TNumber> Y;

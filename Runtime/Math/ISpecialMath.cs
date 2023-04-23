@@ -4,7 +4,7 @@
     /// Here lays all the functions that can be highly optimised in different realisation.
     /// </summary>
     /// <typeparam name="TNumber"></typeparam>
-    public interface ISpecialMath<TNumber> where TNumber : INumber<TNumber>
+    public interface ISpecialMath<TNumber> where TNumber : struct, INumber<TNumber>
     {
         TNumber Abs(TNumber number);
         TNumber Sign(TNumber number);

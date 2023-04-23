@@ -6,7 +6,7 @@ namespace PluggableMath
     /// <summary>
     /// Readable expression wrapper for TNumber.
     /// </summary>
-    public struct Operand<TNumber> where TNumber : INumber<TNumber>
+    public readonly struct Operand<TNumber> where TNumber : struct, INumber<TNumber>
     {
         public readonly TNumber Value;
 
@@ -18,6 +18,9 @@ namespace PluggableMath
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Operand<TNumber>(TNumber number) => new Operand<TNumber>(number);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator TNumber(Operand<TNumber> operand) => operand.Value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Operand<TNumber> operator +(Operand<TNumber> a) => a.Value;
@@ -29,7 +32,7 @@ namespace PluggableMath
         public static Operand<TNumber> operator +(Operand<TNumber> a, Operand<TNumber> b) => a.Value.Add(b.Value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Operand<TNumber> operator -(Operand<TNumber> a, Operand<TNumber> b) => -a + b;
+        public static Operand<TNumber> operator -(Operand<TNumber> a, Operand<TNumber> b) => a.Value.Sub(b.Value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Operand<TNumber> operator *(Operand<TNumber> a, Operand<TNumber> b) => a.Value.Mul(b.Value);

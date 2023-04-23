@@ -1,7 +1,11 @@
 ﻿namespace PluggableMath
 {
-    public interface INumber<TNumber> where TNumber : INumber<TNumber>
+    public interface INumber<TNumber> where TNumber : struct, INumber<TNumber>
     {
+        IEpsilon<TNumber> Epsilon { get; }
+        IParser<TNumber> Parser { get; }
+        ISpecialMath<TNumber> SpecialMath { get; }
+
         TNumber Add(TNumber other);
         TNumber Sub(TNumber other);
         TNumber Div(TNumber other);
