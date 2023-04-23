@@ -1,0 +1,8 @@
+﻿{
+  "name": "pluggable-math",
+  "version": "0.1.0",
+  "type": "library",
+  "displayName": "Pluggable Math",
+  "unity": "2021.2",
+  "description": "Math abstractions."
+}
