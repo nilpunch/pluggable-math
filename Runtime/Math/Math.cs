@@ -7,7 +7,17 @@
         static Math()
         {
             SpecialMath = new TNumber().SpecialMath;
+
+            Epsilon = SpecialMath.Epsilon;
+            Epsilon = SpecialMath.EpsilonSqr;
+            NumericalMinValue = SpecialMath.NumericalMinValue;
+            NumericalMaxValue = SpecialMath.NumericalMaxValue;
         }
+
+        public static Operand<TNumber> Epsilon { get; }
+        public static Operand<TNumber> EpsilonSqr { get; }
+        public static Operand<TNumber> NumericalMinValue { get; }
+        public static Operand<TNumber> NumericalMaxValue { get; }
 
         public static Operand<TNumber> Max(Operand<TNumber> a, Operand<TNumber> b)
         {
@@ -51,7 +61,7 @@
 
         public static bool ApproximatelyEqual(Operand<TNumber> a, Operand<TNumber> b)
         {
-            return ApproximatelyEqual(a, b, Epsilon<TNumber>.Sqr);
+            return ApproximatelyEqual(a, b, EpsilonSqr);
         }
 
         public static bool ApproximatelyEqual(Operand<TNumber> x, Operand<TNumber> y, Operand<TNumber> epsilon)
@@ -97,9 +107,19 @@
             return SpecialMath.Sin(number.Value);
         }
 
+        public static Operand<TNumber> Asin(Operand<TNumber> number)
+        {
+            return SpecialMath.Asin(number.Value);
+        }
+
         public static Operand<TNumber> Cos(Operand<TNumber> number)
         {
             return SpecialMath.Cos(number.Value);
+        }
+
+        public static Operand<TNumber> Acos(Operand<TNumber> number)
+        {
+            return SpecialMath.Acos(number.Value);
         }
 
         public static Operand<TNumber> Tan(Operand<TNumber> number)

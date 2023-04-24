@@ -11,20 +11,25 @@ namespace PluggableMath
         {
             Parser = new TNumber().Parser;
         }
-        
-        public static TNumber From(int value)
+
+        public static TNumber FromInt(int value)
         {
             return Parser.FromInt(value);
         }
-        
+
         public static TNumber FromDivision(int nominator, int denominator)
         {
             return Parser.FromDivision(nominator, denominator);
         }
-        
+
         public static float ToFloat(TNumber number)
         {
             return Parser.ToFloat(number);
+        }
+
+        public static TNumber UnsafeFromFloat(float value)
+        {
+            return Parser.UnsafeFromFloat(value);
         }
     }
 }

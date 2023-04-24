@@ -9,7 +9,7 @@ namespace PluggableMath
         {
             return new Float(value);
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Float FromDivision(int nominator, int denominator)
         {
@@ -20,6 +20,12 @@ namespace PluggableMath
         public float ToFloat(Float number)
         {
             return number.Value;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Float UnsafeFromFloat(float value)
+        {
+            return new Float(value);
         }
     }
 }

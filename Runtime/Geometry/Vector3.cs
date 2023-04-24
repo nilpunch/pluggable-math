@@ -19,7 +19,7 @@ namespace PluggableMath
             Y = y;
             Z = z;
         }
-        
+
         /// <summary>
         /// Constructs a vector from three TNumber values.
         /// </summary>
@@ -34,42 +34,42 @@ namespace PluggableMath
         /// <summary>
         /// Shorthand for writing Vector3<TNumber>(0, 0, 0).
         /// </summary>
-        public static Vector3<TNumber> Zero => new Vector3<TNumber>(Parse<TNumber>.From(0), Parse<TNumber>.From(0), Parse<TNumber>.From(0));
+        public static Vector3<TNumber> Zero => new Vector3<TNumber>(Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(0));
 
         /// <summary>
         /// Shorthand for writing Vector3<TNumber>(1, 1, 1).
         /// </summary>
-        public static Vector3<TNumber> One => new Vector3<TNumber>(Parse<TNumber>.From(1), Parse<TNumber>.From(1), Parse<TNumber>.From(1));
+        public static Vector3<TNumber> One => new Vector3<TNumber>(Parse<TNumber>.FromInt(1), Parse<TNumber>.FromInt(1), Parse<TNumber>.FromInt(1));
 
         /// <summary>
         /// Shorthand for writing Vector3<TNumber>(1, 0, 0).
         /// </summary>
-        public static Vector3<TNumber> Right => new Vector3<TNumber>(Parse<TNumber>.From(1), Parse<TNumber>.From(0), Parse<TNumber>.From(0));
+        public static Vector3<TNumber> Right => new Vector3<TNumber>(Parse<TNumber>.FromInt(1), Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(0));
 
         /// <summary>
         /// Shorthand for writing Vector3<TNumber>(-1, 0, 0).
         /// </summary>
-        public static Vector3<TNumber> Left => new Vector3<TNumber>(Parse<TNumber>.From(-1), Parse<TNumber>.From(0), Parse<TNumber>.From(0));
+        public static Vector3<TNumber> Left => new Vector3<TNumber>(Parse<TNumber>.FromInt(-1), Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(0));
 
         /// <summary>
         /// Shorthand for writing Vector3<TNumber>(0, 1, 0).
         /// </summary>
-        public static Vector3<TNumber> Up => new Vector3<TNumber>(Parse<TNumber>.From(0), Parse<TNumber>.From(1), Parse<TNumber>.From(0));
+        public static Vector3<TNumber> Up => new Vector3<TNumber>(Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(1), Parse<TNumber>.FromInt(0));
 
         /// <summary>
         /// Shorthand for writing Vector3<TNumber>(0, -1, 0).
         /// </summary>
-        public static Vector3<TNumber> Down => new Vector3<TNumber>(Parse<TNumber>.From(0), Parse<TNumber>.From(-1), Parse<TNumber>.From(0));
+        public static Vector3<TNumber> Down => new Vector3<TNumber>(Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(-1), Parse<TNumber>.FromInt(0));
 
         /// <summary>
         /// Shorthand for writing Vector3<TNumber>(0, 0, 1).
         /// </summary>
-        public static Vector3<TNumber> Forward => new Vector3<TNumber>(Parse<TNumber>.From(0), Parse<TNumber>.From(0), Parse<TNumber>.From(1));
+        public static Vector3<TNumber> Forward => new Vector3<TNumber>(Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(1));
 
         /// <summary>
         /// Shorthand for writing Vector3<TNumber>(0, 0, -1).
         /// </summary>
-        public static Vector3<TNumber> Backward => new Vector3<TNumber>(Parse<TNumber>.From(0), Parse<TNumber>.From(0), Parse<TNumber>.From(-1));
+        public static Vector3<TNumber> Backward => new Vector3<TNumber>(Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(0), Parse<TNumber>.FromInt(-1));
 
         /// <summary>
         /// Returns true if the given vector is exactly equal to this vector.
@@ -295,7 +295,7 @@ namespace PluggableMath
         public static Vector3<TNumber> NormalizeSafe(Vector3<TNumber> a, Vector3<TNumber> defaultValue = new Vector3<TNumber>())
         {
             var lengthSqr = LengthSqr(a);
-            if (lengthSqr < Epsilon<TNumber>.Sqr)
+            if (lengthSqr < Math<TNumber>.EpsilonSqr)
                 return defaultValue;
             return a / Math<TNumber>.Sqrt(lengthSqr);
         }
@@ -366,7 +366,7 @@ namespace PluggableMath
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ApproximatelyEqual(Vector3<TNumber> a, Vector3<TNumber> b)
         {
-            return ApproximatelyEqual(a, b, Epsilon<TNumber>.Sqr);
+            return ApproximatelyEqual(a, b, Math<TNumber>.EpsilonSqr);
         }
 
         /// <summary>

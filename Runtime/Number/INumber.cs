@@ -2,7 +2,6 @@
 {
     public interface INumber<TNumber> where TNumber : struct, INumber<TNumber>
     {
-        IEpsilon<TNumber> Epsilon { get; }
         IParser<TNumber> Parser { get; }
         ISpecialMath<TNumber> SpecialMath { get; }
 

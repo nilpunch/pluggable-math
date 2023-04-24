@@ -7,5 +7,7 @@
         TNumber FromDivision(int nominator, int denominator);
 
         float ToFloat(TNumber number);
+
+        public TNumber UnsafeFromFloat(float value);
     }
 }

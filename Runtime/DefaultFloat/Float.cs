@@ -14,7 +14,6 @@ namespace PluggableMath
             Value = value;
         }
 
-        public IEpsilon<Float> Epsilon => new GenericEpsilon<Float>(new Float(1e-6f));
         public IParser<Float> Parser => new FloatParser();
         public ISpecialMath<Float> SpecialMath => new FloatSpecialMath();
 
@@ -47,7 +46,7 @@ namespace PluggableMath
         {
             return new Float(-Value);
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Less(Float other)
         {
@@ -82,6 +81,11 @@ namespace PluggableMath
         public bool IsNaN()
         {
             return float.IsNaN(Value);
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 }

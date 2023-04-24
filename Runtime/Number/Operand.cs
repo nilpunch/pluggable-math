@@ -16,11 +16,21 @@ namespace PluggableMath
             Value = value;
         }
 
+        public static Operand<TNumber> Zero => Parse<TNumber>.FromInt(0);
+        public static Operand<TNumber> One => Parse<TNumber>.FromInt(1);
+        public static Operand<TNumber> MinusOne => Parse<TNumber>.FromInt(-1);
+        public static Operand<TNumber> MinValue => Math<TNumber>.NumericalMinValue;
+        public static Operand<TNumber> MaxValue => Math<TNumber>.NumericalMaxValue;
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Operand<TNumber>(TNumber number) => new Operand<TNumber>(number);
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator TNumber(Operand<TNumber> operand) => operand.Value;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Operand<TNumber>(float value) => Parse<TNumber>.UnsafeFromFloat(value);
+        public static explicit operator float(Operand<TNumber> operand) => Parse<TNumber>.ToFloat(operand);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Operand<TNumber> operator +(Operand<TNumber> a) => a.Value;
@@ -63,5 +73,7 @@ namespace PluggableMath
         public override bool Equals(object obj) => obj is Operand<TNumber> other && Equals(other);
 
         public override int GetHashCode() => Value.GetHashCode();
+
+        public override string ToString() => Value.ToString();
     }
 }

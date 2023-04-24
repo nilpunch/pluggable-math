@@ -5,6 +5,11 @@ namespace PluggableMath
 {
     public class FloatSpecialMath : ISpecialMath<Float>
     {
+        public Float Epsilon => new Float(1e-6f);
+        public Float EpsilonSqr => new Float(1e-12f);
+        public Float NumericalMinValue => new Float(float.MinValue);
+        public Float NumericalMaxValue => new Float(float.MaxValue);
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Float Abs(Float number)
         {
@@ -49,6 +54,18 @@ namespace PluggableMath
         public Float Sin(Float number)
         {
             return new Float(MathF.Sin(number.Value));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Float Asin(Float number)
+        {
+            return new Float(MathF.Asin(number.Value));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Float Acos(Float number)
+        {
+            return new Float(MathF.Acos(number.Value));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
